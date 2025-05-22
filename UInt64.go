@@ -1,4 +1,4 @@
-package UInt64
+package gqlgen_types
 
 import (
 	"encoding/json"
