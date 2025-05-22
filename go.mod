@@ -1,4 +1,4 @@
-module gqlgen_types
+module github.com/snorrigy/gqlgen_types
 
 go 1.24.2
 
