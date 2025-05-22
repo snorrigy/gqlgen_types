@@ -9,13 +9,13 @@ import (
 	"github.com/99designs/gqlgen/graphql"
 )
 
-func MarshalUint64(i uint64) graphql.Marshaler {
+func MarshalUInt64(i uint64) graphql.Marshaler {
 	return graphql.WriterFunc(func(w io.Writer) {
 		io.WriteString(w, fmt.Sprintf("%d", i))
 	})
 }
 
-func UnmarshalUint64(v interface{}) (uint64, error) {
+func UnmarshalUInt64(v interface{}) (uint64, error) {
 	switch v := v.(type) {
 	case string:
 		i, err := strconv.Atoi(v)
