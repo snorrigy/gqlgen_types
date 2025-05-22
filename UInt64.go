@@ -9,32 +9,34 @@ import (
 	"github.com/99designs/gqlgen/graphql"
 )
 
-func MarshalUInt64(i uint64) graphql.Marshaler {
+type UInt64 uint64
+
+func MarshalUInt64(i UInt64) graphql.Marshaler {
 	return graphql.WriterFunc(func(w io.Writer) {
 		io.WriteString(w, fmt.Sprintf("%d", i))
 	})
 }
 
-func UnmarshalUInt64(v interface{}) (uint64, error) {
+func UnmarshalUInt64(v interface{}) (UInt64, error) {
 	switch v := v.(type) {
 	case string:
 		i, err := strconv.Atoi(v)
 		if err != nil {
 			return 0, fmt.Errorf("string failed to be parsed: %v", err)
 		} else {
-			return uint64(i), nil
+			return UInt64(i), nil
 		}
 
 	case int:
-		return uint64(v), nil
+		return UInt64(v), nil
 	case int64:
-		return uint64(v), nil
+		return UInt64(v), nil
 	case json.Number:
 		i, err := strconv.Atoi(string(v))
 		if err != nil {
 			return 0, fmt.Errorf("json.Number failed to be parsed: %v", err)
 		} else {
-			return uint64(i), nil
+			return UInt64(i), nil
 		}
 	default:
 		return 0, fmt.Errorf("%T is not an int", v)
